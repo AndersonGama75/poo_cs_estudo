@@ -9,26 +9,26 @@ namespace poo_aula01
         {
             using (Loja.Classes.Cliente cli3 = new Loja.Classes.Cliente(1))
             {
-                //cli3.Nome = "Georgia";
+                cli3.Nome = "Georgia";
             }
 
-            //try
-            //{
-            //    Loja.Classes.Cliente cli = new Loja.Classes.Cliente();
-            //    //cli.Codigo = 1;
-            //    //cli.Nome = "João";
-            //    //cli.Tipo = 1;
-            //    //cli.DataCadastro = new DateTime(2020, 07, 16);
-            //    cli.Codigo = 2;
-            //    cli.Nome = "Camila";
-            //    cli.Tipo = 2;
-            //    cli.DataCadastro = new DateTime(2020, 07, 19);
-            //    cli.Dispose();
-            //}
-            //catch (Loja.Excecoes.ValidacaoException ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
+            try
+            {
+                Loja.Classes.Cliente cli = new Loja.Classes.Cliente();
+                //cli.Codigo = 1;
+                //cli.Nome = "João";
+                //cli.Tipo = 1;
+                //cli.DataCadastro = new DateTime(2020, 07, 16);
+                cli.Codigo = 2;
+                cli.Nome = "Camila";
+                cli.Tipo = 2;
+                cli.DataCadastro = new DateTime(2020, 07, 19);
+                cli.Dispose();
+            }
+            catch (Loja.Excecoes.ValidacaoException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             //double metodoCliente = MetodoExtensao.metade(cli.Codigo.Value);
             //double juros = MetodoExtensao.juros(cli.Codigo.Value);

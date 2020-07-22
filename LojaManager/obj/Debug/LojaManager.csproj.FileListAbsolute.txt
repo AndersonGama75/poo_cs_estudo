@@ -1,0 +1,12 @@
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\bin\Debug\LojaManager.exe.config
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\bin\Debug\LojaManager.exe
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\bin\Debug\LojaManager.pdb
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\bin\Debug\Loja.dll
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\bin\Debug\Loja.pdb
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.csprojAssemblyReference.cache
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.Properties.Resources.resources
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.csproj.GenerateResource.cache
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.csproj.CoreCompileInputs.cache
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.csproj.CopyComplete
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.exe
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.pdb
