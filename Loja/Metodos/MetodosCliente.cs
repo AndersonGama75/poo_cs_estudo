@@ -51,6 +51,7 @@ namespace Loja.Classes
                     try
                     {
                         cmd.ExecuteNonQuery();
+                        this._isNew = false;
                     }
                     catch (Exception)
                     {
@@ -90,6 +91,7 @@ namespace Loja.Classes
                     try
                     {
                         cmd.ExecuteNonQuery();
+                        this._isModified = false;
                     }
                     catch (Exception)
                     {
@@ -102,7 +104,7 @@ namespace Loja.Classes
                 }
             }
         }
-        public void gravar()
+        public void Gravar()
         {
             if (this._isNew)
             {
@@ -114,18 +116,129 @@ namespace Loja.Classes
             }
         }
 
-        public void apagar()
+        public static Int32 Proximo()
         {
+            Int32 _return = 0;
+            using (SqlConnection cn = new SqlConnection("Server=.\\sqlexpress;Database=Loja;Trusted_Connection=True;"))
+            {
+                try
+                {
+                    cn.Open();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = cn;
+                    cmd.CommandText = "Select MAX(Codigo) + 1 from Cliente";
 
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            dr.Read();
+                            _return = dr.GetInt32(0);
+                        }
+                    }
+                }
+                cn.Close();
+
+            }
+            return _return;
+        }
+
+        public static List<Cliente> Todos()
+        {
+            List<Cliente> _return = null;
+            using (SqlConnection cn = new SqlConnection("Server=.\\sqlexpress;Database=Loja;Trusted_Connection=True;"))
+            {
+                try
+                {
+                    cn.Open();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = cn;
+                    cmd.CommandText = "Select * from Cliente";
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                Cliente cli = new Cliente();
+                                cli._codigo = dr.GetInt32(dr.GetOrdinal("Codigo"));
+                                cli._nome = dr.GetString(dr.GetOrdinal("Nome"));
+                                cli._tipo = dr.GetInt32(dr.GetOrdinal("Tipo"));
+                                cli._dataCadastro = dr.GetDateTime(dr.GetOrdinal("DataCadastro"));
+
+                                if (_return == null)
+                                {
+                                    _return = new List<Cliente>();
+                                }
+
+                                cli._isNew = false;
+                                _return.Add(cli);
+                            }                            
+                        }
+                    }
+                }
+                cn.Close();
+
+            }
+            return _return;
+        }
+        public void Apagar()
+        {
+            SqlConnection cn = new SqlConnection("Server=.\\sqlexpress;Database=Loja;Trusted_Connection=True;");
+            {
+                try
+                {
+                    cn.Open();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "Delete From Cliente where Codigo = @codigo";
+                    // Informando que a conexão está usando a conexão cn que foi aberta acima
+                    cmd.Connection = cn;
+
+                    cmd.Parameters.AddWithValue("@codigo", this._codigo);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        cn.Close();
+                    }
+                }
+            }
         }
 
         public void Dispose()
         {
-            //this.gravar();
+            this.Gravar();
         }
 
         public Cliente()
         {
+            this._codigo = Proximo();
             this._isNew = true;
             this._isModified = false;
         }

@@ -7,28 +7,28 @@ namespace poo_aula01
     {
         static void Main(string[] args)
         {
-            using (Loja.Classes.Cliente cli3 = new Loja.Classes.Cliente(1))
-            {
-                cli3.Nome = "Georgia";
-            }
+            //using (Loja.Classes.Cliente cli3 = new Loja.Classes.Cliente(1))
+            //{
+            //    cli3.Nome = "Georgia";
+            //}
 
-            try
-            {
-                Loja.Classes.Cliente cli = new Loja.Classes.Cliente();
-                //cli.Codigo = 1;
-                //cli.Nome = "João";
-                //cli.Tipo = 1;
-                //cli.DataCadastro = new DateTime(2020, 07, 16);
-                cli.Codigo = 2;
-                cli.Nome = "Camila";
-                cli.Tipo = 2;
-                cli.DataCadastro = new DateTime(2020, 07, 19);
-                cli.Dispose();
-            }
-            catch (Loja.Excecoes.ValidacaoException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            //try
+            //{
+            //    Loja.Classes.Cliente cli = new Loja.Classes.Cliente();
+            //    //cli.Codigo = 1;
+            //    //cli.Nome = "João";
+            //    //cli.Tipo = 1;
+            //    //cli.DataCadastro = new DateTime(2020, 07, 16);
+            //    cli.Codigo = 2;
+            //    cli.Nome = "Camila";
+            //    cli.Tipo = 2;
+            //    cli.DataCadastro = new DateTime(2020, 07, 19);
+            //    cli.Dispose();
+            //}
+            //catch (Loja.Excecoes.ValidacaoException ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
 
             //double metodoCliente = MetodoExtensao.metade(cli.Codigo.Value);
             //double juros = MetodoExtensao.juros(cli.Codigo.Value);
@@ -37,10 +37,10 @@ namespace poo_aula01
             //Console.WriteLine($"Primeira maiúscula: {palavra}");
 
 
-            using (Loja.Classes.Cliente cli2 = new Loja.Classes.Cliente(5))
-            {
-                cli2.Nome = "ABCD";
-            }
+            //using (Loja.Classes.Cliente cli2 = new Loja.Classes.Cliente(5))
+            //{
+            //    cli2.Nome = "ABCD";
+            //}
             
 
             Loja.Classes.Contato contato = new Loja.Classes.Contato();

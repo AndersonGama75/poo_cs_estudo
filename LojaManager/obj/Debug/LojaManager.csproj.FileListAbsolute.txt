@@ -10,3 +10,6 @@ D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj
 D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.csproj.CopyComplete
 D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.exe
 D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.pdb
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\obj\Debug\LojaManager.Form1.resources
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\bin\Debug\System.Data.SqlClient.dll
+D:\anderson\_programacao\c_sharp\projetos_c_sharp\poo\poo_aula01\LojaManager\bin\Debug\System.Data.SqlClient.xml

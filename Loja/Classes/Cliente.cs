@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Loja.Classes
 {
     public partial class Cliente
     {
+        
         private bool _isNew;
-
+        [Browsable(false)]
         public bool IsNew
         {
             get
@@ -17,7 +19,7 @@ namespace Loja.Classes
         }
 
         private bool _isModified;
-
+        [Browsable(false)]
         public bool IsModified
         {
             get
