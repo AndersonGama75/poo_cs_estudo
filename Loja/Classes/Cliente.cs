@@ -32,7 +32,7 @@ namespace Loja.Classes
 
         //public int Codigo { get; set; }
         private int _codigo;
-
+        [DisplayName("Código")]
         public int Codigo
         {
             get
@@ -53,7 +53,7 @@ namespace Loja.Classes
 
         //public string Nome { get; set; }
         private string _nome;
-
+        [DisplayName("Nome do Cliente")]
         public string Nome
         {
             get
@@ -61,8 +61,12 @@ namespace Loja.Classes
                 return _nome;
             }
             set
-            {
-                if (value.Length <= 3)
+            {/*
+              Alterei a condição de '<= 3' para '< 0' pq na hora de adicionar um novo Cliente no Form, assim que eu digitava
+              a primeira letra o programa já parava, pois como ele atualiza instantaneamente, assim que eu digitava o 1º
+                carctere a validação de exceções entendia como definitivo aquele caractere e parava de rodar.
+              */
+                if (value.Length < 0)
                 {
                     throw new Loja.Excecoes.ValidacaoException("O nome deve possuir mais de 3 caracteres.");
                     _nome = null;

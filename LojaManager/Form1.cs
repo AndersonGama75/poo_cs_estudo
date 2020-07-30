@@ -34,5 +34,20 @@ namespace LojaManager
         {
             ((Loja.Classes.Cliente)dados.Current).Gravar();
         }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            dados.Add(new Loja.Classes.Cliente());
+            dados.MoveLast();
+        }
+
+        private void btnApagar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente apagar esse cliente?", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                ((Loja.Classes.Cliente)dados.Current).Apagar();
+                dados.RemoveCurrent();
+            }
+        }
     }
 }
