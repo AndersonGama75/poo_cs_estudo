@@ -43,18 +43,18 @@ namespace poo_aula01
             //}
             
 
-            Loja.Classes.Contato contato = new Loja.Classes.Contato();
-            contato.Codigo = 1;
-            contato.DadosContato = "12345-6780";
-            contato.Tipo = "Telefone";
+            //Loja.Classes.Contato contato = new Loja.Classes.Contato();
+            //contato.Codigo = 1;
+            //contato.DadosContato = "12345-6780";
+            //contato.Tipo = "Telefone";
 
-            //cli.Contato = new System.Collections.Generic.List<Classes.Contato>();
-            //cli.Contato.Add(contato);
+            ////cli.Contato = new System.Collections.Generic.List<Classes.Contato>();
+            ////cli.Contato.Add(contato);
 
-            contato = new Loja.Classes.Contato();
-            contato.Codigo = 2;
-            contato.DadosContato = "Camila@modelo.com";
-            contato.Tipo = "e-mail";
+            //contato = new Loja.Classes.Contato();
+            //contato.Codigo = 2;
+            //contato.DadosContato = "Camila@modelo.com";
+            //contato.Tipo = "e-mail";
 
             //cli.Contato.Add(contato);
 

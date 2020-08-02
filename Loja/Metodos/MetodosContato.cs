@@ -1,29 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Text;
-
-public static class MetodoExtensao
-{
-    public static double metade(this double valor)
-    {
-        return valor / 2;
-    }
-
-    public static double juros(this double valor)
-    {
-        return valor * 1.1;
-    }
-
-    public static string primeiraMaiuscula(this string palavra)
-    {
-        return palavra.Substring(0, 1).ToUpper() + palavra.Substring(1, (palavra.Length - 1)).ToLower();
-    }
-}
+using System.Data.SqlClient;
 
 namespace Loja.Classes
 {
-    public partial class Cliente : IDisposable
+    public partial class Contato : IDisposable
     {
         public void Insert()
         {
@@ -39,14 +21,14 @@ namespace Loja.Classes
                 }
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "Insert Into Cliente (Codigo, Nome, Tipo, DataCadastro) values (@codigo, @nome, @tipo, @datacadastro)";
+                    cmd.CommandText = "Insert Into Contato (Codigo, Cliente, DadosContato, Tipo) values (@codigo, @cliente, @dadoscontato, @tipo)";
                     // Informando que a conexão está usando a conexão cn que foi aberta acima
                     cmd.Connection = cn;
 
                     cmd.Parameters.AddWithValue("@codigo", this._codigo);
-                    cmd.Parameters.AddWithValue("@nome", this._nome);
+                    cmd.Parameters.AddWithValue("@cliente", this._cliente);
+                    cmd.Parameters.AddWithValue("@dadoscontato", this._dadosContato);
                     cmd.Parameters.AddWithValue("@tipo", this._tipo);
-                    cmd.Parameters.AddWithValue("@datacadastro", this._dataCadastro);
 
                     try
                     {
@@ -79,14 +61,14 @@ namespace Loja.Classes
                 }
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "Update Cliente Set Nome = @nome, Tipo = @tipo, DataCadastro = @datacadastro where Codigo = @codigo";
+                    cmd.CommandText = "Update Contato Set Cliente = @cliente, DadosContato = @dadoscontato, Tipo = @tipo where Codigo = @codigo";
                     // Informando que a conexão está usando a conexão cn que foi aberta acima
                     cmd.Connection = cn;
 
                     cmd.Parameters.AddWithValue("@codigo", this._codigo);
-                    cmd.Parameters.AddWithValue("@nome", this._nome);
+                    cmd.Parameters.AddWithValue("@cliente", this._cliente);
+                    cmd.Parameters.AddWithValue("@dadoscontato", this._dadosContato);
                     cmd.Parameters.AddWithValue("@tipo", this._tipo);
-                    cmd.Parameters.AddWithValue("@datacadastro", this._dataCadastro);
 
                     try
                     {
@@ -132,7 +114,7 @@ namespace Loja.Classes
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = cn;
-                    cmd.CommandText = "Select MAX(Codigo) + 1 from Cliente";
+                    cmd.CommandText = "Select MAX(Codigo) + 1 from Contato";
 
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -149,9 +131,9 @@ namespace Loja.Classes
             return _return;
         }
 
-        public static List<Cliente> Todos()
+        public static List<Contato> Todos(int Cliente)
         {
-            List<Cliente> _return = null;
+            List<Contato> _return = null;
             using (SqlConnection cn = new SqlConnection("Server=.\\sqlexpress;Database=Loja;Trusted_Connection=True;"))
             {
                 try
@@ -165,7 +147,9 @@ namespace Loja.Classes
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = cn;
-                    cmd.CommandText = "Select * from Cliente";
+                    cmd.CommandText = "Select * from Contato where Cliente = @cliente";
+
+                    cmd.Parameters.AddWithValue("@cliente", Cliente);
 
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -173,22 +157,20 @@ namespace Loja.Classes
                         {
                             while (dr.Read())
                             {
-                                Cliente cli = new Cliente();
-                                cli._codigo = dr.GetInt32(dr.GetOrdinal("Codigo"));
-                                cli._nome = dr.GetString(dr.GetOrdinal("Nome"));
-                                cli._tipo = dr.GetInt32(dr.GetOrdinal("Tipo"));
-                                cli._dataCadastro = dr.GetDateTime(dr.GetOrdinal("DataCadastro"));
-
-                                cli.Contato = Loja.Classes.Contato.Todos(cli._codigo);
+                                Contato cont = new Contato();
+                                cont._dadosContato = dr.GetString(dr.GetOrdinal("DadosContato"));
+                                cont._tipo = dr.GetString(dr.GetOrdinal("Tipo"));
+                                cont._codigo = dr.GetInt32(dr.GetOrdinal("Codigo"));
+                                cont._cliente = dr.GetInt32(dr.GetOrdinal("Cliente"));
 
                                 if (_return == null)
                                 {
-                                    _return = new List<Cliente>();
+                                    _return = new List<Contato>();
                                 }
 
-                                cli._isNew = false;
-                                _return.Add(cli);
-                            }                            
+                                cont._isNew = false;
+                                _return.Add(cont);
+                            }
                         }
                     }
                 }
@@ -211,7 +193,7 @@ namespace Loja.Classes
                 }
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "Delete From Cliente where Codigo = @codigo";
+                    cmd.CommandText = "Delete From Contato where Codigo = @codigo";
                     // Informando que a conexão está usando a conexão cn que foi aberta acima
                     cmd.Connection = cn;
 
@@ -238,14 +220,14 @@ namespace Loja.Classes
             this.Gravar();
         }
 
-        public Cliente()
+        public Contato()
         {
             this._codigo = Proximo();
             this._isNew = true;
             this._isModified = false;
         }
 
-        public Cliente(int codigo)
+        public Contato(int codigo)
         {
             this._codigo = codigo;
             using (SqlConnection cn = new SqlConnection("Server=.\\sqlexpress;Database=Loja;Trusted_Connection=True;"))
@@ -258,10 +240,10 @@ namespace Loja.Classes
                 {
                     throw;
                 }
-                using(SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = cn;
-                    cmd.CommandText = "Select * from Cliente where Codigo = @codigo";                    
+                    cmd.CommandText = "Select * from Cliente where Codigo = @codigo";
 
                     cmd.Parameters.AddWithValue("@codigo", Codigo);
 
@@ -271,9 +253,9 @@ namespace Loja.Classes
                         {
                             dr.Read();
                             this._codigo = dr.GetInt32(dr.GetOrdinal("Codigo"));
-                            this._nome = dr.GetString(dr.GetOrdinal("Nome"));
-                            this._tipo = dr.GetInt32(dr.GetOrdinal("Tipo"));
-                            this._dataCadastro = dr.GetDateTime(dr.GetOrdinal("DataCadastro"));
+                            this._cliente = dr.GetInt32(dr.GetOrdinal("Cliente"));
+                            this._dadosContato = dr.GetString(dr.GetOrdinal("DadosContato"));
+                            this._tipo = dr.GetString(dr.GetOrdinal("Tipo"));
                         }
                     }
                 }
@@ -281,7 +263,7 @@ namespace Loja.Classes
                 this._isModified = false;
                 this._isNew = false;
 
-                
+
             }
         }
     }
